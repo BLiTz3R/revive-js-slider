@@ -1,0 +1,28 @@
+h1 {
+    text-align: center;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.slider {
+    margin: auto;
+    width: 800px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    border: 1px solid black;
+}
+
+.slide {
+    height: 480px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: none;
+}
+
+.slide.active {
+    display: block;
+}
