@@ -1,4 +1,5 @@
 # JS slider for the final project of REvive's seminar
+## In progress...
 
 1. Create an element with an id in your html, as a container for the slider.
 2. Load the script with: `<script src="slider.js"></script>`
