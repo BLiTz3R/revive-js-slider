@@ -78,33 +78,24 @@ const config = [ // πίνακας με τις διαφάνειες
 ]
 
 function slider(elementId, config) {
-  // βρίσκουμε το 1ο slide (το θεωρούμε ως active, γι'αυτό το βάζουμε σε μεταβλητή με αυτό το όνομα)
   const sliderEl = document.getElementById(elementId);
-  const newDiv = document.createElement('div');
-  newDiv.classList.add('slide');
-  sliderEl.appendChild(newDiv);
-  const activeElement = document.querySelector(`#${elementId} .slide`);
 
-  // για κάθε εικόνα από τη δεύτερη μέχρι και την τελευταία
-  for (let i = 1; i < config.length; i++) {
-    // δημιουργούμε ένα αντίγραφο (κλώνο) του βασικού στοιχείου
-    const slideClone = activeElement.cloneNode(true);
-    // θέουμε στο style attribute του στοιχείου την background images από τον πίνακα με τη βοήθεια της CSS url( ) 
-    slideClone.style.backgroundImage = `url(${config[i].img_url})`;
-    // προσθέτουμε ως τελευταίο παιδί του slider το νέο αυτό element/slide
-    sliderEl.appendChild(slideClone);
-    slideClone.innerHTML = `<p style="text-align:${config[i].title.halign};"><span style="color:${config[i].title.color};background-color:${config[i].title.bgcolor};font-size:${config[i].title.fontsize}">${config[i].title.text}</span></p>`;
+  for (let i = 0; i < config.length; i++) {
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('slide');
+    sliderEl.appendChild(newDiv);
+    if (i === 0) {
+      newDiv.classList.add('active');
+    }
+    newDiv.style.backgroundImage = `url(${config[i].img_url})`;
+    newDiv.innerHTML = `<p style="text-align:${config[i].title.halign};"><span style="color:${config[i].title.color};background-color:${config[i].title.bgcolor};font-size:${config[i].title.fontsize}">${config[i].title.text}</span></p>`;
   }
+  playNext(elementId);
 
-  // τώρα μπορούμε να θέσουμε την εικόνα για το 1ο slide
-  activeElement.style.backgroundImage = `url(${config[0].img_url})`;
-  activeElement.innerHTML = `<p style="text-align:${config[0].title.halign};"><span style="color:${config[0].title.color};background-color:${config[0].title.bgcolor};text-align:${config[0].title.halign};font-size:${config[0].title.fontsize}">${config[0].title.text}</span></p>`;
-  // και να το "δηλώσουμε" ως active, προσθέτοντας την αντίστοιχη κλάση
-  activeElement.classList.add('active');
 
-  // σε αυτό το σημείο η σελίδα μας είναι στην κατάσταση που ήταν και με την HTML του 1ης προσέγγισης
-  // άρα ο κώδικας που υπήρχε εκεί λειτουργεί αυτούσιος (εδώ έχουν αφαιρεθεί τα σχόλια)
+}
 
+function playNext(elementId) {
   setInterval(function () {
     const activeElement = document.querySelector(`#${elementId} .active`);
     let nextElement = activeElement.nextElementSibling;
@@ -114,7 +105,6 @@ function slider(elementId, config) {
     activeElement.classList.remove('active');
     nextElement.classList.add('active');
   }, 3000);
-
 }
 
 slider('sliderA', config);
