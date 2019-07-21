@@ -26,3 +26,7 @@ p {
 .slide.active {
     display: block;
 }
+
+.slide p span {
+    padding: 0 5px;
+}

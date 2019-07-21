@@ -4,8 +4,8 @@ const config = [ // πίνακας με τις διαφάνειες
     duration: 1,
     title: {
       text: 'Checkerboard Mesa, Zion National Park, UT',
-      color: '#FFF',
-      bgcolor: '#000',
+      color: '#000',
+      bgcolor: '#fff',
       halign: 'center', // ή right ή center
       valign: 'top', // ή bottom ή center
       fontsize: '14px'
@@ -19,8 +19,8 @@ const config = [ // πίνακας με τις διαφάνειες
     duration: 2,
     title: {
       text: 'Gullfoss, Iceland',
-      color: '#FFF',
-      bgcolor: '#000',
+      color: '#ff0000',
+      bgcolor: '#fff',
       halign: 'left', // ή right ή center
       valign: 'top', // ή bottom ή center
       fontsize: '16px'
@@ -35,7 +35,7 @@ const config = [ // πίνακας με τις διαφάνειες
     title: {
       text: 'Rainforest, Hawaii, USA',
       color: '#FFF',
-      bgcolor: '#000',
+      bgcolor: '#ff0000',
       halign: 'right', // ή right ή center
       valign: 'top', // ή bottom ή center
       fontsize: '18px'
@@ -49,8 +49,8 @@ const config = [ // πίνακας με τις διαφάνειες
     duration: 2,
     title: {
       text: 'Osaka ferris wheel, Osaka, Japan',
-      color: '#FFF',
-      bgcolor: '#000',
+      color: '#000',
+      bgcolor: '#00ff00',
       halign: 'center', // ή right ή center
       valign: 'top', // ή bottom ή center
       fontsize: '15px'
@@ -64,8 +64,8 @@ const config = [ // πίνακας με τις διαφάνειες
     duration: 1,
     title: {
       text: 'Neuschwanstein Castle, Bavaria, Germany',
-      color: '#FFF',
-      bgcolor: '#000',
+      color: '#0000ff',
+      bgcolor: '#ff22aa',
       halign: 'left', // ή right ή center
       valign: 'top', // ή bottom ή center
       fontsize: '14px'
@@ -93,12 +93,12 @@ function slider(elementId, config) {
     slideClone.style.backgroundImage = `url(${config[i].img_url})`;
     // προσθέτουμε ως τελευταίο παιδί του slider το νέο αυτό element/slide
     sliderEl.appendChild(slideClone);
-    slideClone.innerHTML = `<p style="color:${config[i].title.color};background-color:${config[i].title.bgcolor};text-align:${config[i].title.halign};font-size:${config[i].title.fontsize}">${config[i].title.text}</p>`;
+    slideClone.innerHTML = `<p style="text-align:${config[i].title.halign};"><span style="color:${config[i].title.color};background-color:${config[i].title.bgcolor};font-size:${config[i].title.fontsize}">${config[i].title.text}</span></p>`;
   }
 
   // τώρα μπορούμε να θέσουμε την εικόνα για το 1ο slide
   activeElement.style.backgroundImage = `url(${config[0].img_url})`;
-  activeElement.innerHTML = `<p style="color:${config[0].title.color};background-color:${config[0].title.bgcolor};text-align:${config[0].title.halign};font-size:${config[0].title.fontsize}">${config[0].title.text}</p>`;
+  activeElement.innerHTML = `<p style="text-align:${config[0].title.halign};"><span style="color:${config[0].title.color};background-color:${config[0].title.bgcolor};text-align:${config[0].title.halign};font-size:${config[0].title.fontsize}">${config[0].title.text}</span></p>`;
   // και να το "δηλώσουμε" ως active, προσθέτοντας την αντίστοιχη κλάση
   activeElement.classList.add('active');
 
