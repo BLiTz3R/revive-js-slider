@@ -7,11 +7,28 @@ p {
     padding: 0;
 }
 
+.textBox {
+    width: 100%;
+    position: absolute;
+}
+
+.textBox.top {
+    top: 0;
+}
+
+.textBox.center {
+    top: 50%;
+}
+
+.textBox.bottom {
+    bottom: 0;
+}
+
 .slider {
     margin: auto;
     width: 800px;
     -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     border: 1px solid black;
 }
 
@@ -21,12 +38,13 @@ p {
     background-repeat: no-repeat;
     background-size: cover;
     display: none;
+    position: relative;
 }
 
 .slide.active {
     display: block;
 }
 
-.slide p span {
+.slide .textBox span {
     padding: 0 5px;
 }

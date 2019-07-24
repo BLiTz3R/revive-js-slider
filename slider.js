@@ -7,7 +7,7 @@ const config = [ // πίνακας με τις διαφάνειες
       color: '#000',
       bgcolor: '#fff',
       halign: 'center', // ή right ή center
-      valign: 'top', // ή bottom ή center
+      valign: 'bottom', // ή bottom ή center
       fontsize: '14px'
     },
     entry: {
@@ -37,7 +37,7 @@ const config = [ // πίνακας με τις διαφάνειες
       color: '#FFF',
       bgcolor: '#ff0000',
       halign: 'right', // ή right ή center
-      valign: 'top', // ή bottom ή center
+      valign: 'center', // ή bottom ή center
       fontsize: '18px'
     },
     entry: {
@@ -52,7 +52,7 @@ const config = [ // πίνακας με τις διαφάνειες
       color: '#000',
       bgcolor: '#00ff00',
       halign: 'center', // ή right ή center
-      valign: 'top', // ή bottom ή center
+      valign: 'center', // ή bottom ή center
       fontsize: '15px'
     },
     entry: {
@@ -67,7 +67,7 @@ const config = [ // πίνακας με τις διαφάνειες
       color: '#0000ff',
       bgcolor: '#ff22aa',
       halign: 'left', // ή right ή center
-      valign: 'top', // ή bottom ή center
+      valign: 'bottom', // ή bottom ή center
       fontsize: '14px'
     },
     entry: {
@@ -82,17 +82,22 @@ function slider(elementId, config) {
 
   for (let i = 0; i < config.length; i++) {
     const newDiv = document.createElement('div');
-    newDiv.classList.add('slide');
+    newDiv.classList.add('slide', `slide${i}`);
     sliderEl.appendChild(newDiv);
     if (i === 0) {
       newDiv.classList.add('active');
     }
     newDiv.style.backgroundImage = `url(${config[i].img_url})`;
-    newDiv.innerHTML = `<p style="text-align:${config[i].title.halign};"><span style="color:${config[i].title.color};background-color:${config[i].title.bgcolor};font-size:${config[i].title.fontsize}">${config[i].title.text}</span></p>`;
+    newDiv.innerHTML = `<div class="textBox" style="text-align:${config[i].title.halign};"><span style="color:${config[i].title.color};background-color:${config[i].title.bgcolor};font-size:${config[i].title.fontsize}">${config[i].title.text}</span></div>`;
+    if (config[i].title.valign === 'top') {
+      document.querySelector(`.slide${i} .textBox`).classList.add(config[i].title.valign);
+    } else if (config[i].title.valign === 'center') {
+      document.querySelector(`.slide${i} .textBox`).classList.add(config[i].title.valign);
+    } else if (config[i].title.valign === 'bottom') {
+      document.querySelector(`.slide${i} .textBox`).classList.add(config[i].title.valign);
+    }
   }
-  playNext(elementId);
-
-
+ playNext(elementId);
 }
 
 function playNext(elementId) {
