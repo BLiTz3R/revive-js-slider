@@ -86,9 +86,9 @@ function slider(elementId, config) {
     const newDiv = document.createElement('div');
     newDiv.classList.add('slide', `slide${i}`);
     sliderEl.appendChild(newDiv);
-    // if (i === 0) {
-    //   newDiv.classList.add('active');
-    // }
+    if (i === 0) {
+      newDiv.classList.add('active');
+    }
     // img_url
     newDiv.style.backgroundImage = `url(${config[i].img_url})`;
 
@@ -108,44 +108,45 @@ function slider(elementId, config) {
 }
 
 // play slides
-// function playNext(sliderId) {
-//   const activeElement = document.querySelector(`#${sliderId} .active`);
-//   let nextElement = activeElement.nextElementSibling;
-//   if (!nextElement) {
-//     nextElement = document.querySelector(`#${sliderId} div:first-of-type`);
-//   }
-//   activeElement.classList.remove('active');
-//   nextElement.classList.add('active');
-// }
+function playNext(sliderId) {
+  const activeElement = document.querySelector(`#${sliderId} .active`);
+  const slider = document.getElementById(sliderId);
+  let nextElement = activeElement.nextElementSibling;
+  if (!nextElement) {
+    nextElement = document.querySelector(`#${sliderId} div:first-of-type`);
+  }
+  slider.appendChild(activeElement); // move previously active slide to bottom
+  activeElement.classList.remove('active');
+  nextElement.classList.add('active');
+}
 slider('sliderA', config);
 
-// // slide duration
-// const duration = config.map(function (slide) {
-//   return slide.duration * 1000;
-// });
+// slide duration
+const duration = config.map(function (slide) {
+  return slide.duration * 1000;
+});
 
-// let slideIndex = 0;
+let slideIndex = 0;
 
-// function changeSlide(timer) {
-//   setTimeout(function () {
-//     if (timer !== 0) {
-//       playNext(sliderId);
-//     }
-//     if (slideIndex >= duration.length) slideIndex = 0;
-//     changeSlide(duration[slideIndex++]);
-//   }, timer);
-// }
-// changeSlide(0);
+function changeSlide(timer) {
+  setTimeout(function () {
+    if (timer !== 0) {
+      playNext(sliderId);
+    }
+    if (slideIndex >= duration.length) slideIndex = 0;
+    changeSlide(duration[slideIndex++]);
+  }, timer);
+}
+changeSlide(0);
 
 // animations
-window.addEventListener("DOMContentLoaded", function () {
-  const slider = document.getElementById(sliderId);
-  const fadeComplete = function () {
-    slider.appendChild(arr[0]);
-  };
-  const arr = slider.getElementsByTagName('div');
-  for (let i = 0; i < arr.length; i++) {
-    arr[i].addEventListener("animationend", fadeComplete, false);
-  }
-
-}, false);
+// window.addEventListener("DOMContentLoaded", function () {
+//   const slider = document.getElementById(sliderId);
+//   const fadeComplete = function () {
+//     slider.appendChild(arr[0]);
+//   };
+//   const arr = slider.getElementsByTagName('div');
+//   for (let i = 0; i < arr.length; i++) {
+//     arr[i].addEventListener("animationend", fadeComplete, false);
+//   }
+// }, false);
