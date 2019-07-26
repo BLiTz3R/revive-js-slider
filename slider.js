@@ -1,7 +1,7 @@
 const config = [ // πίνακας με τις διαφάνειες
   { // αντικείμενο για κάθε διαφάνεια
     img_url: 'https://images.unsplash.com/photo-1544132532-54a91735687a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1778&q=80',
-    duration: 1, // in seconds
+    duration: 3, // in seconds
     title: {
       text: 'Checkerboard Mesa, Zion National Park, UT',
       color: '#000',
@@ -16,7 +16,7 @@ const config = [ // πίνακας με τις διαφάνειες
     }
   }, {
     img_url: 'https://images.unsplash.com/photo-1555089439-9edb4b4b8dfb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1778&q=80',
-    duration: 2,
+    duration: 3,
     title: {
       text: 'Gullfoss, Iceland',
       color: '#ff0000',
@@ -31,7 +31,7 @@ const config = [ // πίνακας με τις διαφάνειες
     }
   }, {
     img_url: 'https://images.unsplash.com/photo-1556924784-f02bd5b5b094?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1778&q=80',
-    duration: 3,
+    duration: 5,
     title: {
       text: 'Rainforest, Hawaii, USA',
       color: '#FFF',
@@ -46,7 +46,7 @@ const config = [ // πίνακας με τις διαφάνειες
     }
   }, {
     img_url: 'https://images.unsplash.com/photo-1558429121-3943585e2206?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1778&q=80',
-    duration: 4,
+    duration: 5,
     title: {
       text: 'Osaka ferris wheel, Osaka, Japan',
       color: '#000',
@@ -88,7 +88,9 @@ function slider(elementId, config) {
     sliderEl.appendChild(newDiv);
     if (i === 0) {
       newDiv.classList.add('active');
+      newDiv.style.zIndex = 1;
     }
+
     // img_url
     newDiv.style.backgroundImage = `url(${config[i].img_url})`;
 
@@ -110,14 +112,19 @@ function slider(elementId, config) {
 // play slides
 function playNext(sliderId) {
   const activeElement = document.querySelector(`#${sliderId} .active`);
-  const slider = document.getElementById(sliderId);
   let nextElement = activeElement.nextElementSibling;
   if (!nextElement) {
     nextElement = document.querySelector(`#${sliderId} div:first-of-type`);
   }
-  slider.appendChild(activeElement); // move previously active slide to bottom
+  const slides = document.querySelectorAll('.slide');
+  slides.forEach(function (slide) {
+    slide.style.zIndex = 0;
+  })
+  activeElement.style.zIndex = 1;
   activeElement.classList.remove('active');
   nextElement.classList.add('active');
+  nextElement.style.zIndex = 2;
+  // nextElement.style.animation = `${config[i].entry.fx} ${config[i].entry.duration} linear`;
 }
 slider('sliderA', config);
 
@@ -138,15 +145,3 @@ function changeSlide(timer) {
   }, timer);
 }
 changeSlide(0);
-
-// animations
-// window.addEventListener("DOMContentLoaded", function () {
-//   const slider = document.getElementById(sliderId);
-//   const fadeComplete = function () {
-//     slider.appendChild(arr[0]);
-//   };
-//   const arr = slider.getElementsByTagName('div');
-//   for (let i = 0; i < arr.length; i++) {
-//     arr[i].addEventListener("animationend", fadeComplete, false);
-//   }
-// }, false);
