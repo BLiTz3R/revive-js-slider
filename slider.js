@@ -12,7 +12,7 @@ const config = [ // πίνακας με τις διαφάνειες
     },
     entry: {
       fx: 'fadein', // toleft/toright/fadein
-      duration: 1, // in seconds
+      duration: 3, // in seconds
     }
   }, {
     img_url: 'https://images.unsplash.com/photo-1555089439-9edb4b4b8dfb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1778&q=80',
@@ -21,13 +21,13 @@ const config = [ // πίνακας με τις διαφάνειες
       text: 'Gullfoss, Iceland',
       color: '#ff0000',
       bgcolor: '#fff',
-      halign: 'left',
+      halign: 'right',
       valign: 'top',
       fontsize: '16px'
     },
     entry: {
       fx: 'toleft',
-      duration: 1,
+      duration: 3,
     }
   }, {
     img_url: 'https://images.unsplash.com/photo-1556924784-f02bd5b5b094?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1778&q=80',
@@ -36,13 +36,13 @@ const config = [ // πίνακας με τις διαφάνειες
       text: 'Rainforest, Hawaii, USA',
       color: '#FFF',
       bgcolor: '#ff0000',
-      halign: 'right',
+      halign: 'center',
       valign: 'center',
       fontsize: '18px'
     },
     entry: {
       fx: 'toright',
-      duration: 2,
+      duration: 5,
     }
   }, {
     img_url: 'https://images.unsplash.com/photo-1558429121-3943585e2206?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1778&q=80',
@@ -51,13 +51,13 @@ const config = [ // πίνακας με τις διαφάνειες
       text: 'Osaka ferris wheel, Osaka, Japan',
       color: '#000',
       bgcolor: '#00ff00',
-      halign: 'center',
+      halign: 'right',
       valign: 'center',
       fontsize: '15px'
     },
     entry: {
       fx: 'toright',
-      duration: 2,
+      duration: 5,
     }
   }, {
     img_url: 'https://images.unsplash.com/photo-1557067175-db3159d938ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1778&q=80',
@@ -72,7 +72,7 @@ const config = [ // πίνακας με τις διαφάνειες
     },
     entry: {
       fx: 'fadein',
-      duration: 3,
+      duration: 6,
     }
   }
 ]
@@ -87,6 +87,7 @@ function slider(elementId, config) {
     newDiv.classList.add('slide', `slide${i}`);
     sliderEl.appendChild(newDiv);
     if (i === 0) {
+      newDiv.style.animation = `${config[i].entry.fx} ${config[i].entry.duration}s linear`;
       newDiv.classList.add('active');
       newDiv.style.zIndex = 1;
     }
@@ -107,6 +108,7 @@ function slider(elementId, config) {
     }
   }
   sliderId = arguments[0];
+  slideAnimate();
 }
 
 // play slides
@@ -122,26 +124,31 @@ function playNext(sliderId) {
   })
   activeElement.style.zIndex = 1;
   activeElement.classList.remove('active');
+  activeElement.style.animation = 'none';
+  const slideIndex = nextElement.className.replace(/\D/g, ''); // stripping all non-numeric chars from className will give me the slide index
+  nextElement.style.animation = `${config[slideIndex].entry.fx} ${config[slideIndex].entry.duration}s linear`;
   nextElement.classList.add('active');
   nextElement.style.zIndex = 2;
-  // nextElement.style.animation = `${config[i].entry.fx} ${config[i].entry.duration} linear`;
 }
-slider('sliderA', config);
 
 // slide duration
-const duration = config.map(function (slide) {
-  return slide.duration * 1000;
-});
+function slideAnimate() {
+  const duration = config.map(function (slide) {
+    return slide.duration * 1000;
+  });
 
-let slideIndex = 0;
+  let slideIndex = 0;
 
-function changeSlide(timer) {
-  setTimeout(function () {
-    if (timer !== 0) {
-      playNext(sliderId);
-    }
-    if (slideIndex >= duration.length) slideIndex = 0;
-    changeSlide(duration[slideIndex++]);
-  }, timer);
+  function changeSlide(timer) {
+    setTimeout(function () {
+      if (timer !== 0) {
+        playNext(sliderId);
+      }
+      if (slideIndex >= duration.length) {
+        slideIndex = 0;
+      }
+      changeSlide(duration[slideIndex++]);
+    }, timer);
+  }
+  changeSlide(0);
 }
-changeSlide(0);

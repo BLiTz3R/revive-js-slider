@@ -32,22 +32,18 @@ p {
     height: 450px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    border: 1px solid black;
-    background: #0000;
+    border: 1px solid #000;
+    background: #000;
 }
 
 .slide {
+    display: block;
     width: 100%;
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
-}
-
-.slide.active {
-    display: block;
-    animation: fadein 1s linear;
 }
 
 .slide .textBox span {
