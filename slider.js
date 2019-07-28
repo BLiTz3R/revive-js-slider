@@ -6,12 +6,12 @@ const config = [ // πίνακας με τις διαφάνειες
       text: 'Checkerboard Mesa, Zion National Park, UT',
       color: '#000',
       bgcolor: '#fff',
-      halign: 'center', // left/center/right
-      valign: 'bottom', // top/center/bottom
+      halign: 'center', // left, center, right
+      valign: 'bottom', // top, center, bottom
       fontsize: '14px'
     },
     entry: {
-      fx: 'fadein', // toleft/toright/fadein
+      fx: 'fadeIn', // toLeft, toRight, toTop, toBottom, fadeIn
       duration: 3, // in seconds
     }
   }, {
@@ -26,7 +26,7 @@ const config = [ // πίνακας με τις διαφάνειες
       fontsize: '16px'
     },
     entry: {
-      fx: 'toleft',
+      fx: 'toBottom',
       duration: 3,
     }
   }, {
@@ -41,7 +41,7 @@ const config = [ // πίνακας με τις διαφάνειες
       fontsize: '18px'
     },
     entry: {
-      fx: 'toright',
+      fx: 'toRight',
       duration: 5,
     }
   }, {
@@ -56,7 +56,7 @@ const config = [ // πίνακας με τις διαφάνειες
       fontsize: '15px'
     },
     entry: {
-      fx: 'toright',
+      fx: 'toTop',
       duration: 5,
     }
   }, {
@@ -71,7 +71,7 @@ const config = [ // πίνακας με τις διαφάνειες
       fontsize: '14px'
     },
     entry: {
-      fx: 'fadein',
+      fx: 'toLeft',
       duration: 6,
     }
   }
@@ -87,7 +87,7 @@ function slider(elementId, config) {
     newDiv.classList.add('slide', `slide${i}`);
     sliderEl.appendChild(newDiv);
     if (i === 0) {
-      newDiv.style.animation = `${config[i].entry.fx} ${config[i].entry.duration}s linear`;
+      newDiv.style.animation = `${config[i].entry.fx} ${config[i].entry.duration}s`;
       newDiv.classList.add('active');
       newDiv.style.zIndex = 1;
     }
@@ -126,7 +126,7 @@ function playNext(sliderId) {
   activeElement.classList.remove('active');
   activeElement.style.animation = 'none';
   const slideIndex = nextElement.className.replace(/\D/g, ''); // stripping all non-numeric chars from className will give me the slide index
-  nextElement.style.animation = `${config[slideIndex].entry.fx} ${config[slideIndex].entry.duration}s linear`;
+  nextElement.style.animation = `${config[slideIndex].entry.fx} ${config[slideIndex].entry.duration}s`;
   nextElement.classList.add('active');
   nextElement.style.zIndex = 2;
 }

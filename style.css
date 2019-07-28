@@ -50,8 +50,7 @@ p {
     padding: 0 5px;
 }
 
-
-@-webkit-keyframes fadein {
+@-webkit-keyframes fadeIn {
     from {
         opacity: 0;
     }
@@ -61,7 +60,7 @@ p {
     }
 }
 
-@keyframes fadein {
+@keyframes fadeIn {
     from {
         opacity: 0;
     }
@@ -71,30 +70,58 @@ p {
     }
 }
 
-@-webkit-keyframes toright {
+@-webkit-keyframes toRight {
     from {
         -webkit-transform: translate3d(-100%, 0, 0);
-        transform: translate3d(-100%, 0, 0);
+                transform: translate3d(-100%, 0, 0);
     }
 }
 
-@keyframes toright {
+@keyframes toRight {
     from {
         -webkit-transform: translate3d(-100%, 0, 0);
-        transform: translate3d(-100%, 0, 0);
+                transform: translate3d(-100%, 0, 0);
     }
 }
 
-@-webkit-keyframes toleft {
+@-webkit-keyframes toLeft {
     from {
         -webkit-transform: translate3d(100%, 0, 0);
-        transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
     }
 }
 
-@keyframes toleft {
+@keyframes toLeft {
     from {
         -webkit-transform: translate3d(100%, 0, 0);
-        transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
+    }
+}
+
+@-webkit-keyframes toBottom {
+    from {
+        -webkit-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+    }
+}
+
+@keyframes toBottom {
+    from {
+        -webkit-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+    }
+}
+
+@-webkit-keyframes toTop {
+    from {
+        -webkit-transform: translate3d(0, 100%, 0);
+                transform: translate3d(0, 100%, 0);
+    }
+}
+
+@keyframes toTop {
+    from {
+        -webkit-transform: translate3d(0, 100%, 0);
+                transform: translate3d(0, 100%, 0);
     }
 }
