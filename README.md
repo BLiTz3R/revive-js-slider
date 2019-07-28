@@ -40,7 +40,6 @@ Edit the config array as follows:
     ...
   }, { // third slide
     ...
-  },
-
+  }
 ]
 ```
