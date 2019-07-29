@@ -79,26 +79,27 @@ const config = [ // πίνακας με τις διαφάνειες
 
 let sliderId; // global sliderId to use in various functions
 
+// main function to create all necessary elements and set all main properties for slides
 function slider(elementId, config) {
   const sliderEl = document.getElementById(elementId);
 
-  for (let i = 0; i < config.length; i++) {
-    const newDiv = document.createElement('div');
-    newDiv.classList.add('slide', `slide${i}`);
-    sliderEl.appendChild(newDiv);
-    if (i === 0) {
-      newDiv.style.animation = `${config[i].entry.fx} ${config[i].entry.duration}s`;
-      newDiv.classList.add('active');
-      newDiv.style.zIndex = 1;
+  for (let i = 0; i < config.length; i++) { // create divs for all slides
+    const slideDiv = document.createElement('div');
+    slideDiv.classList.add('slide', `slide${i}`); // classes assigned, one class with index
+    sliderEl.appendChild(slideDiv);
+    if (i === 0) { // properties for first slide only
+      slideDiv.style.animation = `${config[i].entry.fx} ${config[i].entry.duration}s`;
+      slideDiv.classList.add('active');
+      slideDiv.style.zIndex = 1;
     }
 
-    // img_url
-    newDiv.style.backgroundImage = `url(${config[i].img_url})`;
+    // set img_url
+    slideDiv.style.backgroundImage = `url(${config[i].img_url})`;
 
-    // title text, halign, color, bgcolor, fontsize
-    newDiv.innerHTML = `<div class="textBox" style="text-align:${config[i].title.halign};"><span style="color:${config[i].title.color};background-color:${config[i].title.bgcolor};font-size:${config[i].title.fontsize}">${config[i].title.text}</span></div>`;
+    // set title text, halign, color, bgcolor, fontsize
+    slideDiv.innerHTML = `<div class="textBox" style="text-align:${config[i].title.halign};"><span style="color:${config[i].title.color};background-color:${config[i].title.bgcolor};font-size:${config[i].title.fontsize}">${config[i].title.text}</span></div>`;
 
-    // title text valign
+    // set title text valign
     if (config[i].title.valign === 'top') {
       document.querySelector(`.slide${i} .textBox`).classList.add(config[i].title.valign);
     } else if (config[i].title.valign === 'center') {
@@ -107,47 +108,48 @@ function slider(elementId, config) {
       document.querySelector(`.slide${i} .textBox`).classList.add(config[i].title.valign);
     }
   }
-  sliderId = arguments[0];
-  slideAnimate();
+  sliderId = arguments[0]; // set sliderId as function's first argument, to use later
+  slideAnimate(); // play the slides
 }
 
-// play slides
+// function to play slides
 function playNext(sliderId) {
-  const activeElement = document.querySelector(`#${sliderId} .active`);
-  let nextElement = activeElement.nextElementSibling;
-  if (!nextElement) {
-    nextElement = document.querySelector(`#${sliderId} div:first-of-type`);
+  const activeEl = document.querySelector(`#${sliderId} .active`);
+  let nextActive = activeEl.nextElementSibling;
+  if (!nextActive) { // if no more slides
+    nextActive = document.querySelector(`#${sliderId} .slide0`); // set the first slide as active
   }
   const slides = document.querySelectorAll('.slide');
   slides.forEach(function (slide) {
-    slide.style.zIndex = 0;
+    slide.style.zIndex = 0; // set z-index to 0 for all slides
   })
-  activeElement.style.zIndex = 1;
-  activeElement.classList.remove('active');
-  activeElement.style.animation = 'none';
-  const slideIndex = nextElement.className.replace(/\D/g, ''); // stripping all non-numeric chars from className will give me the slide index
-  nextElement.style.animation = `${config[slideIndex].entry.fx} ${config[slideIndex].entry.duration}s`;
-  nextElement.classList.add('active');
-  nextElement.style.zIndex = 2;
+  activeEl.style.zIndex = 1; // set it to 1 for the active one, so it's always the one showing "behind" the one coming next
+  activeEl.classList.remove('active'); // remove active class to prepare for the next one
+  activeEl.style.animation = 'none'; // and reset animation for next cycle
+  const slideIndex = nextActive.className.replace(/\D/g, ''); // stripping all non-numeric chars from className gives the slide index
+  nextActive.style.animation = `${config[slideIndex].entry.fx} ${config[slideIndex].entry.duration}s`; // which we need here to set the animation
+  nextActive.classList.add('active'); // add active class
+  nextActive.style.zIndex = 2; // and set z-index to 2, so it's always covering all the others
 }
 
-// slide duration
+// function to animate slides
 function slideAnimate() {
-  const duration = config.map(function (slide) {
-    return slide.duration * 1000;
+  const duration = config.map(function (slide) { // create an array with all the durations
+    return slide.duration * 1000; // turn seconds into ms
   });
 
   let slideIndex = 0;
 
+  // function to handle given fx.duration
   function changeSlide(timer) {
     setTimeout(function () {
       if (timer !== 0) {
-        playNext(sliderId);
+        playNext(sliderId); // play slides
       }
-      if (slideIndex >= duration.length) {
-        slideIndex = 0;
+      if (slideIndex >= duration.length) { // if no more slides
+        slideIndex = 0; // reset index to start over
       }
-      changeSlide(duration[slideIndex++]);
+      changeSlide(duration[slideIndex++]); // animate slide with given duration and iterate it for next cycle
     }, timer);
   }
   changeSlide(0);
