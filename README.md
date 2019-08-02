@@ -22,19 +22,19 @@ Edit the config array as follows:
 ```javascript
 [ 
   { // first slide
-    img_url: 'https://....',
-    duration: 5, // in seconds
+    img_url: 'https://....', // full image url
+    duration: 5, // slide duration in seconds
     title: {
-      text: 'message', 
-      color: '#fff',
-      bgcolor: '#000',
-      halign: 'left',    // options: left, right, center
-      valign: 'top',     // options: top, bottom, center
-      fontsize: '12px'
+      text: 'message', // title text
+      color: '#fff', // title color
+      bgcolor: '#000', // title background color
+      halign: 'left',    // horizontal align: left, right, center
+      valign: 'top',     // vertical align: top, bottom, center
+      fontsize: '12px' // title font size
     },
     entry: {
-      fx: 'toLeft',      // options: toLeft, toRight, toTop, toBottom, fadeIn
-      duration: 3,      // in seconds
+      fx: 'toLeft',      // slide entry effect: toLeft, toRight, toTop, toBottom, fadeIn
+      duration: 3,      // slide entry duration in seconds
     }
   }, { // second slide
     ...
