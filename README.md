@@ -21,7 +21,7 @@ Edit the config array as follows:
 
 ```javascript
 [ 
-  { // first slide
+  {                           // first slide
     img_url: 'https://....',  // full image url
     duration: 5,              // slide duration in seconds
     title: {
