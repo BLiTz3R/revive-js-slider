@@ -4,11 +4,11 @@ const config = [ // array with slides
     duration: 3, // in seconds
     title: { // title settings
       text: 'Checkerboard Mesa, Zion National Park, UT', // text
-      color: '#000', // color
+      color: '#800000', // color
       bgcolor: '#fff', // background color
       halign: 'center', // horizontal align: left, center, right
       valign: 'bottom', // vertical align: top, center, bottom
-      fontsize: '14px' // font size
+      fontsize: '22px' // font size
     },
     entry: { // slide entry
       fx: 'fadeIn', // effect: toLeft, toRight, toTop, toBottom, fadeIn
@@ -19,11 +19,11 @@ const config = [ // array with slides
     duration: 3,
     title: {
       text: 'Gullfoss, Iceland',
-      color: '#ff0000',
-      bgcolor: '#fff',
+      color: '#0000ff',
+      bgcolor: '#ffff00',
       halign: 'right',
       valign: 'top',
-      fontsize: '16px'
+      fontsize: '24px'
     },
     entry: {
       fx: 'toBottom',
@@ -38,7 +38,7 @@ const config = [ // array with slides
       bgcolor: '#ff0000',
       halign: 'center',
       valign: 'center',
-      fontsize: '18px'
+      fontsize: '26px'
     },
     entry: {
       fx: 'toRight',
@@ -53,7 +53,7 @@ const config = [ // array with slides
       bgcolor: '#00ff00',
       halign: 'right',
       valign: 'center',
-      fontsize: '15px'
+      fontsize: '18px'
     },
     entry: {
       fx: 'toTop',
@@ -64,11 +64,11 @@ const config = [ // array with slides
     duration: 6,
     title: {
       text: 'Neuschwanstein Castle, Bavaria, Germany',
-      color: '#0000ff',
+      color: '#fff',
       bgcolor: '#ff22aa',
       halign: 'left',
       valign: 'bottom',
-      fontsize: '14px'
+      fontsize: '18px'
     },
     entry: {
       fx: 'toLeft',
@@ -89,7 +89,6 @@ function slider(elementId, config) {
     sliderEl.appendChild(slideDiv); // place slide divs under the main element
 
     if (i === 0) { // properties for first slide only, required on load to show as intended
-      slideDiv.style.animation = `${config[i].entry.fx} ${config[i].entry.duration}s`; // entry
       slideDiv.classList.add('active'); // class of "active"
       slideDiv.style.zIndex = 1; // and z-index 1, to appear in front
     }
