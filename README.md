@@ -1,5 +1,4 @@
 # JS slider for the final project of REvive's seminar
-## In progress...
 
 ### Installation
 
