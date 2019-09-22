@@ -24,7 +24,7 @@ p {
     bottom: 0;
 }
 
-.slider {
+#slider {
     position: relative;
     margin: auto;
     overflow: hidden;
