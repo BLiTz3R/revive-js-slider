@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="style.css">
 ```
 
-4. Add slider.js before your closing <body> tag.
+4. Add slider.js before your closing ``<body>`` tag.
   
 ```javascript
 <script src="slider.js"></script>
