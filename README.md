@@ -10,7 +10,7 @@
 
 2. Move the slider's files into your project's folder.
 
-3. Add style.css in your <head>.
+3. Add style.css in your ``<head>``.
   
 ```html
 <link rel="stylesheet" href="style.css">
