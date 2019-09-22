@@ -2,17 +2,54 @@
 
 ### Installation
 
-1. Create an element with an id in your html, as a container for the slider.
-2. Then add this to your html:
+1. Set up your HTML markup.
+
+```html
+<div id="your-id"></div>
+```
+
+2. Move the slider's files into your project's folder.
+
+3. Add style.css in your <head>.
+  
+```html
+<link rel="stylesheet" href="style.css">
+```
+
+4. Add slider.js before your closing <body> tag.
+  
 ```javascript
 <script src="slider.js"></script>
-<script>
-  slider('elementId', config);
-</script>
 ```
-3. (optional) Edit the config array in slider.js to suit your preference, or create your own, respecting its structure, as seen below.
 
-Note: Input your element's id without the '#'. If you created your own configuration, use its variable name instead of 'config'.
+5. Initialize the slider in your script file or an inline script tag.
+
+```javascript
+slider('your-id', config);
+```
+
+6. (optional) Edit the config array in slider.js to suit your preference, or create your own, respecting its structure, as seen below.
+
+When complete, your HTML should look something like:
+
+```html
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css">
+  <title>Best JS slider ever</title>
+</head>
+
+<body>
+  <div id="your-id"></div>
+
+  <script src="slider.js"></script>
+  <script>
+    slider('your-id', config);
+  </script>
+</body>
+</html>
+```
 
 ### Configuration
 
