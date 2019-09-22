@@ -51,9 +51,11 @@ When complete, your HTML should look something like:
 </html>
 ```
 
-### Configuration
+A HTML file like this is already included for your convenience.
 
-Edit the config array as follows:
+### Configuration settings
+
+If you want, you can edit the config array as follows:
 
 ```javascript
 [ 
