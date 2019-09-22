@@ -2,13 +2,13 @@
 
 ### Installation
 
-1. Set up your HTML markup.
+1. Move the slider's files into your project's folder.
+
+2. Set up your HTML markup.
 
 ```html
 <div id="your-id"></div>
 ```
-
-2. Move the slider's files into your project's folder.
 
 3. Add style.css in your ``<head>``.
   
