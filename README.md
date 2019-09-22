@@ -7,7 +7,7 @@
 2. Set up your HTML markup.
 
 ```html
-<div id="your-id"></div>
+<div id="your-id" class="slider"></div>
 ```
 
 3. Add style.css in your ``<head>``.
@@ -41,7 +41,7 @@ When complete, your HTML should look something like:
 </head>
 
 <body>
-  <div id="your-id"></div>
+  <div id="your-id" class="slider"></div>
 
   <script src="slider.js"></script>
   <script>
